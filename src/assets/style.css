@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  min-width: 1024px;
+  min-height: 100vh;
+}
+
+.content {
+  padding: 140px 100px 50px 220px;
+}

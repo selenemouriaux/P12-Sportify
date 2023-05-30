@@ -1,0 +1,45 @@
+.sideBar {
+  position: absolute;
+  margin-top: 90px;
+  width: 120px;
+  height: calc(100vh - 90px);
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sideBarIcons {
+  flex-grow: 1;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.sideBarActivity {
+  height: 64px;
+  width: 64px;
+  border-radius: 6px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sideBarCopyrights {
+  justify-self: flex-end;
+  font-size: 12px;
+  margin: 10px 0 50px 0;
+  display: flex;
+  align-items: center;
+  color: white;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+.activeIcon {
+  background-color: black !important;
+  border: 2px solid #FF0101 !important;
+}
