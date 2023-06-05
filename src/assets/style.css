@@ -15,4 +15,16 @@
 
 .content {
   padding: 140px 100px 50px 220px;
+  width: 100%;
 }
+
+.selectionPanel {
+  position: relative;
+  margin: 20px;
+}
+
+.panelItem {
+  height: 34px;
+  width: 200px;
+}
+

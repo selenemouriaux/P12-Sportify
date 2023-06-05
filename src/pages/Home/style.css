@@ -1,4 +1,8 @@
 
+.home {
+
+}
+
 .userName {
   color: #FF0101;
 }
@@ -6,4 +10,10 @@
 .welcomeMessage {
 margin-top: 30px;
   margin-bottom: 50px;
+}
+
+.graphsBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: min-content;
 }

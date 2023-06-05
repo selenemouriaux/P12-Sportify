@@ -1,0 +1,39 @@
+.container {
+  min-height: calc(100vh - 274px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.notFound {
+  font-weight: bold;
+  font-size: 288px;
+  text-align: center;
+}
+
+.legend {
+  text-align: center;
+  font-size: 36px;
+  font-weight: unset;
+}
+
+.backHome {
+  text-align: center;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    min-height: calc(100vh - 254px);
+  }
+  .notFound {
+    font-size: 25vw;
+  }
+
+  .legend {
+    text-align: center;
+    font-size: 18px;
+    font-weight: unset;
+  }
+}
