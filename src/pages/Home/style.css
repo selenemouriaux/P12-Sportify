@@ -1,6 +1,14 @@
 
 .home {
+  height: 100%;
+}
 
+.greetings {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 5%;
 }
 
 .userName {
@@ -8,12 +16,13 @@
 }
 
 .welcomeMessage {
-margin-top: 30px;
-  margin-bottom: 50px;
+
 }
 
-.graphsBox {
+.chartsBox {
+  height: 75%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-auto-rows: min-content;
+  grid-auto-rows: 1fr 1fr;
+  gap: 3%;
 }

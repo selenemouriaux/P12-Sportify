@@ -28,3 +28,8 @@
   width: 200px;
 }
 
+.chartCard {
+  border-radius: 5px;
+  text-wrap: normal;
+  overflow: hidden;
+}

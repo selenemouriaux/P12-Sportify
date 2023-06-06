@@ -1,16 +1,16 @@
 import { createContext, useState } from "react";
 
-export const SettingsContext = createContext(null);
+export const SettingsContext = createContext({userId: 12, source: 'API'});
 
 export const SettingsContextProvider = ({ children }) => {
-  const [source, setSource] = useState('local');
+  const [source, setSource] = useState('API');
   const [userId, setUserId] = useState(12);
 
   const value = {
     source,
     setSource,
     userId,
-    setUserId
+    setUserId,
   }
 
   return (
