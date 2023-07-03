@@ -4,6 +4,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
+  list-style: none;
 }
 
 .wrapper {
@@ -29,7 +30,26 @@
 }
 
 .chartCard {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
   text-wrap: normal;
   overflow: hidden;
+}
+
+.axis {
+  font-family: inherit;
+  font-size: 14px;
+  color: #9B9EAC;
+  shape-rendering: geometricPrecision;
+}
+
+.axis-grid line {
+  stroke: #DEDEDE;
+  stroke-dasharray: 2 2;
+}
+
+.colored {
+  background-color: lime;
 }

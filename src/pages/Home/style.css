@@ -26,3 +26,8 @@
   grid-auto-rows: 1fr 1fr;
   gap: 3%;
 }
+
+.canvas {
+  flex-grow: 1;
+  width: 100%;
+}

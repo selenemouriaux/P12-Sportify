@@ -1,4 +1,3 @@
-import './style.css'
 import * as d3 from 'd3'
 import {useState, useRef, useLayoutEffect} from "react";
 import {default as data} from '../../data/user1AverageSession.json'
