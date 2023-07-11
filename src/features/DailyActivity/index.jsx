@@ -1,12 +1,12 @@
 import './style.css'
 import {useRef, useEffect} from "react";
 import drawDailyActivity from '../../components/D3/dailiesChart'
+import resetGraphSize from "../../components/D3/resetGraphSize";
 import generateDimensions from "../../utils/generateDimensions";
 
 const DailyActivity = ({dailyData}) => {
 
   const svgDailyRef = useRef();
-  const tooltipRef = useRef();
   const canvasRef = useRef();
   const chartMargins = {
     top: 25,
@@ -16,6 +16,7 @@ const DailyActivity = ({dailyData}) => {
   }
 
   useEffect(() => {
+    resetGraphSize(svgDailyRef)
     const dimensions = generateDimensions(canvasRef, chartMargins)
     drawDailyActivity(dailyData, svgDailyRef, dimensions)
   }, [])
@@ -29,9 +30,13 @@ const DailyActivity = ({dailyData}) => {
           <li className="dailyActivityBar">Calories brûlées (kCal)</li>
         </ul>
       </div>
-      <div ref={tooltipRef} className="dailyTooltip"></div>
       <div className="canvas" ref={canvasRef}>
-        <svg id="dailyChart" ref={svgDailyRef}/>
+        <svg ref={svgDailyRef}>
+        </svg>
+        <div id="dailyTooltip">
+          <div className="dailyKg"><span></span>kg</div>
+          <div className="dailyKCal"><span></span>kCal</div>
+        </div>
       </div>
     </div>
   )

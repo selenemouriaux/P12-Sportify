@@ -35,7 +35,7 @@
   flex-direction: column;
   border-radius: 5px;
   text-wrap: normal;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .axis {
@@ -45,11 +45,38 @@
   shape-rendering: geometricPrecision;
 }
 
+.axis-grid, .y.axis {
+  stroke-width: 0;
+}
 .axis-grid line {
+  stroke-width: 1px;
   stroke: #DEDEDE;
   stroke-dasharray: 2 2;
 }
 
-.colored {
-  background-color: lime;
-}
+/*.colored {*/
+/*  background-color: lime;*/
+/*}*/
+
+/*.tooltip {*/
+/*  font-size: 7px;*/
+/*  shape-rendering: geometricPrecision;*/
+/*  font-family: inherit;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  gap: 24px;*/
+/*  padding: 3px;*/
+/*  position: absolute;*/
+/*  z-index: 1000;*/
+/*}*/
+
+/*.daily {*/
+/*  color: white;*/
+/*  fill: #FF0101;*/
+/*}*/
+
+/*.average {*/
+/*  color: black;*/
+/*  fill: white;*/
+/*}*/
