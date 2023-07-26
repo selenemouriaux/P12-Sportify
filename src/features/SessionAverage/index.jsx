@@ -9,10 +9,10 @@ const SessionAverage = ({sessionData}) => {
   const averageSizer = useRef();
   const svgAverageRef = useRef();
   const chartMargins = {
-    top: 50,
-    right: 0,
-    bottom: 25,
-    left: 0,
+    top: 10,
+    right: 20,
+    bottom: 30,
+    left: 20,
   }
 
   useEffect(() => {
@@ -25,12 +25,12 @@ const SessionAverage = ({sessionData}) => {
   return (
     <div className="sessionAverage chartCard">
       <div className="averageHeader">
-        <span>Durée moyenne des session</span>
+        <span>Durée moyenne des sessions</span>
       </div>
       <div className="canvas" ref={averageSizer}>
         <svg ref={svgAverageRef}></svg>
         <div id="averageTooltip">
-          <div className="sessionLength"><span>15</span> min</div>
+          <div className="sessionLength"><span></span> min</div>
         </div>
       </div>
     </div>

@@ -1,158 +1,132 @@
 import * as d3 from 'd3';
+import findYatXbyBisection from "../../utils/getYbyX";
 
 const drawSessionAverage = (data, ref, dimensions) => {
 
   const svgFrame = d3.select(ref.current)
   svgFrame.empty()
   svgFrame.attr("width", dimensions.width
-      + dimensions.margin.left + dimensions.margin.right)
+    + dimensions.margin.left + dimensions.margin.right)
     .attr("height", dimensions.height
       + dimensions.margin.top + dimensions.margin.bottom)
   const tooltip = d3.select('#averageTooltip')
+  const weekdays = ['D', 'L', 'Ma', 'Me', 'J', 'V', 'S']
+
 
   const xAccessor = d => d.day
   const yAccessor = d => d.sessionLength
 
-  // defining x-axis type & domain/rate ratio, from left to right, inside svgFrame
-  // const xScale = d3.scaleBand()
-  //   .domain(data.map(xAccessor))
-  //   .range([0, dimensions.width])
-  //   .padding(0.2)
-//   // defining first y-axis for KILOGRAMS from bottom up including offsets (styling)
-//   const yScaleKg = d3.scaleLinear()
-//     .domain([minWeight - weightOffset, maxWeight + weightOffset])
-//     .range([dimensions.height, 0])
-//   // defining second y-axis for CALORIES, no offsets (styling)
-//   const yScaleCal = d3.scaleLinear()
-//     .domain([0, d3.max(data, yCalAccessor) * 1.05])
-//     .range([dimensions.height, 0])
-//
-//   // setting up horizontal ticks/caption alignment, style and regularity based on previously set xScale
-//   const xAxis = d3.axisBottom(xScale)
-//     .tickPadding(20)
-//     .tickSize(0)
-//   // setting up vertical ticks/caption alignment, style and regularity based on previously set yScaleKg
-//   const yAxis = d3.axisRight(yScaleKg)
-//     .tickPadding(20)
-//     .tickSize(0)
-//     .ticks(3)
-//
-//   // displaying a new svg group with x-axis previously set up info
-//   svgFrame.append('g')
-//     .attr("transform", `translate(${dimensions.margin.left}, ${dimensions.height + dimensions.margin.top})`)
-//     .classed('x axis', true)
-//     .call(xAxis)
-//   // displaying a new svg group with y-axis previously set up info
-//   svgFrame.append('g')
-//     .attr("transform", `translate(${dimensions.width + dimensions.margin.left}, ${dimensions.margin.top})`)
-//     .classed('y axis', true)
-//     .call(yAxis)
-//
-//   // creating vertical grid lines
-//   const yAxisGrid = d3.axisRight(yScaleKg)
-//     .tickSize(dimensions.width)
-//     .tickFormat('')
-//     .ticks(3)
-//   // displaying y-axis grid lines previously set up BEFORE setting up the graph zone
-//   svgFrame.append('g')
-//     .attr("transform", `translate(${dimensions.margin.left}, ${dimensions.margin.top})`)
-//     .classed('y axis-grid', true)
-//     .call(yAxisGrid);
-//
-//   // defining actual graph frame and position inside svgFrame
-//   const graph = svgFrame.append('g')
-//     .attr("width", dimensions.width)
-//     .attr("height", dimensions.height)
-//     .attr('transform', `translate(${dimensions.margin.left}, ${dimensions.margin.top})`)
-//
-//   // creating a svg path to display each kilogram data properly on both its axis
-//   graph.selectAll('.kgBar')
-//     .data(data)
-//     .join('path')
-//     .attr('class', "kgBar")
-//     .attr('fill', '#282D30')
-//     .attr('d', d => dailyBar(
-//       xScale(xAccessor(d)) + xScale.bandwidth() * .35,
-//       yScaleKg(yKgAccessor(d)),
-//       xScale.bandwidth() / 10,
-//       dimensions.height - yScaleKg(yKgAccessor(d))
-//     ))
-//   // same as above, paths are defined through fn in attr('d'...)
-//   graph.selectAll('.kCalBar')
-//     .data(data)
-//     .join('path')
-//     .attr('class', "kCalBar")
-//     .attr('fill', '#E60000')
-//     .attr('d', d => dailyBar(
-//       xScale(xAccessor(d)) + xScale.bandwidth() * .55,
-//       yScaleCal(yCalAccessor(d)),
-//       xScale.bandwidth() / 10,
-//       dimensions.height - yScaleCal(yCalAccessor(d))
-//     ))
-//
-//   // defining tooltip hover effects
-//   const mouseOver = (hoveredZone, datum) => {
-//     d3.select(hoveredZone).attr('fill', 'rgba(196, 196, 196, 0.5)')
-//     // redraw bars on top of background
-//     graph.selectAll('.hoverKCalBar')
-//       .data(data)
-//       .join('path')
-//       .attr('class', "hoverKCalBar")
-//       .attr('fill', '#E60000')
-//       .attr('d', d => dailyBar(
-//         xScale(xAccessor(datum)) + xScale.bandwidth() * .55,
-//         yScaleCal(yCalAccessor(datum)),
-//         xScale.bandwidth() / 10,
-//         dimensions.height - yScaleCal(yCalAccessor(datum))
-//       ))
-//       .style('pointer-events', 'none')
-//     graph.selectAll('.hoverKgBar')
-//       .data(data)
-//       .join('path')
-//       .attr('class', "hoverKgBar")
-//       .attr('fill', '#282D30')
-//       .attr('d', d => dailyBar(
-//         xScale(xAccessor(datum)) + xScale.bandwidth() * .35,
-//         yScaleKg(yKgAccessor(datum)),
-//         xScale.bandwidth() / 10,
-//         dimensions.height - yScaleKg(yKgAccessor(datum))
-//       ))
-//       .style('pointer-events', 'none')
-//     // set, place & display tooltip at top and horizontally based on width AND padding
-//     tooltip.style('display', 'flex')
-//       .style('top', 0)
-//       .style('left', `${xScale(xAccessor(datum)) + xScale.bandwidth() + 30}px`)
-//     tooltip.select('.dailyKg span')
-//       .text(yKgAccessor(datum))
-//     tooltip.select('.dailyKCal span')
-//       .text(yCalAccessor(datum))
-//   }
-//
-//   // removing hover effects on mouse leave
-//   const mouseLeave = (hoveredZone) => {
-//     d3.select(hoveredZone).attr('fill', 'transparent')
-//     graph.selectAll('.hoverKgBar').remove()
-//     graph.selectAll('.hoverKCalBar').remove()
-//     // remove tooltip
-//     tooltip.style('display', 'none')
-//   }
-//
-//   // defining 'zoning' new elements to manage hover effects
-//   graph.selectAll(".hover")
-//     .data(data)
-//     .join('rect')
-//     .attr('class', 'hover')
-//     .attr('x', d => xScale(xAccessor(d)))
-//     .attr('y', 0)
-//     .attr('width', xScale.bandwidth())
-//     .attr('height', dimensions.height)
-//     .attr('fill', 'transparent')
-//     .on('mouseover', function (e, d) {
-//       mouseOver(this, d)
-//     })
-//     .on('mouseleave', function () {
-//       mouseLeave(this)
-//     })
+  const xScale = d3.scaleLinear()
+    .domain(d3.extent(data, xAccessor))
+    .range([0, dimensions.width + dimensions.margin.left + dimensions.margin.right])
+  const reducedXScale = d3.scaleLinear()
+    .domain(d3.extent(data, xAccessor))
+    .range([0, dimensions.width])
+
+  const yScale = d3.scaleLinear()
+    .domain(d3.extent(data, yAccessor))
+    .range([dimensions.height, 0])
+
+  // TODO : swap for new svg element including text formatted with CSS flex rules
+  const xAxis = d3.axisBottom(reducedXScale)
+    .ticks(weekdays.length)
+    .tickFormat(d => weekdays[d % 7])
+
+
+  svgFrame.append('g')
+    .attr("transform", `translate(${dimensions.margin.left}, ${dimensions.height})`)
+    .classed('x axis', true)
+    .style('stroke-width', 0)
+    .style('color', 'rgba(255,255,255, 0.7)')
+    .call(xAxis)
+
+  const graph = svgFrame.append('g')
+    .attr("width", dimensions.width + dimensions.margin.left + dimensions.margin.right)
+    .attr("height", dimensions.height)
+    .attr('transform', `translate(0, ${dimensions.margin.top})`)
+
+  const lineGenerator = d3.line()
+    .x(d => xScale(xAccessor(d)))
+    .y(d => yScale(yAccessor(d)))
+    .curve(d3.curveBasis)
+
+
+
+  var defs = graph.append("defs");
+  var gradient = defs.append("linearGradient")
+    .attr("id", "svgGradient")
+  .attr("x1", "0%")
+  .attr("x2", "100%")
+  // .attr("y1", "0%")
+  // .attr("y2", "100%");
+  gradient.append("stop")
+    .attr('class', 'start')
+    .attr("offset", "0%")
+    .attr("stop-color", "#ffdada")
+    .attr("stop-opacity", 0.5);
+  gradient.append("stop")
+    .attr('class', 'end')
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+  .attr("stop-opacity", 1);
+
+
+
+
+  const line = graph.append("path")
+    .datum(data)
+    .attr('d', lineGenerator)
+    .attr('fill', 'none')
+    .attr('stroke', 'white')
+    .attr('stroke-width', 2)
+    .attr("stroke", "url(#svgGradient)")
+
+  const tooltipDot = graph.append('circle')
+    .attr('r', 5)
+    .attr('fill', 'white')
+    .style('opacity', 0)
+    .style('pointer-events', 'none')
+
+  const formattingMinutes = (duration) => {
+    const hours = Math.floor(duration / 60)
+    const minutes = duration % 60
+    if (!duration)
+      return 'Ò_Ó'
+    return `${hours ? hours + 'h ' : minutes ? minutes + 'm' : ''}`
+  }
+
+  // defining 'zoning' new elements to manage hover effects
+  graph.append("rect")
+    .attr('width', dimensions.width + dimensions.margin.left + dimensions.margin.right)
+    .attr('height', dimensions.height)
+    .style('opacity', 0)
+    .on('touchmouse mousemove', function (e) {
+      const mousePos = d3.pointer(e, this)
+      // const day = weekdays[parseInt(xScale.invert(mousePos[0]))]
+      const day = xScale.invert(mousePos[0] * 7 / 6) + 0.001
+      const bisector = d3.bisector(xAccessor).left
+      const index = bisector(data, day)
+      // const date = weekdays[xAccessor(data[index-1])%7]
+      const duration = yAccessor(data[index - 1])
+
+      tooltipDot.style('opacity', 1)
+        .attr('stroke', 'rgba(255,255,255, 0.3)')
+        .attr('stroke-width', 10)
+        .attr('cx', mousePos[0])
+        .attr('cy', findYatXbyBisection(mousePos[0], line.node()))
+        .raise()
+
+      tooltip.style('display', 'flex')
+        .style('bottom', `${duration * 3 + 40}px`)
+        .style('left', `${mousePos[0] > dimensions.width ? mousePos[0] - 15 : mousePos[0] + 10}px`)
+
+      tooltip.select('.sessionLength')
+        .text(formattingMinutes(duration))
+    })
+    .on('mouseleave', function () {
+      tooltipDot.style('opacity', 0)
+      tooltip.style('display', 'none')
+    })
 }
 
 export default drawSessionAverage;

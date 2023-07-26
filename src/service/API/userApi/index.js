@@ -14,7 +14,7 @@ export const userActivity = (source, userId, config) => {
 };
 
 export const userAverageSessions = (source, userId, config) => {
-  return selectApi(source).get(`${userId}/average-sessions`, config).then(res => res.data)
+  return selectApi(source).get(`${userId}/average-sessions`, config).then(res => res.data.data.sessions)
 };
 
 export const userPerformance = (source, userId, config) => {

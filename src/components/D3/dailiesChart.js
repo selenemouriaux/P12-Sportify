@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
 import {localeFR} from "../../utils/dateFormats/localeFR";
 import dailyBar from "../../utils/drawingTypes/dailyBar";
-import {svg} from "d3";
 
 const drawDailyActivity = (data, ref, dimensions) => {
   // importing local time setup
@@ -27,7 +26,6 @@ const drawDailyActivity = (data, ref, dimensions) => {
   const xAccessor = d => dateFormatter(Date.parse(d.day))
   const yKgAccessor = d => d.kilogram
   const yCalAccessor = d => d.calories
-
   // defining x-axis type & domain/rate ratio, from left to right, inside svgFrame
   const xScale = d3.scaleBand()
     .domain(data.map(xAccessor))
