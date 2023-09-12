@@ -1,5 +1,0 @@
-export { default as Daily } from './DailyActivity'
-export { default as Session } from './SessionAverage'
-export { default as Perf } from './Performance'
-export { default as Overall } from './OverallScore'
-export { default as Calories } from './CaloryMonitor'

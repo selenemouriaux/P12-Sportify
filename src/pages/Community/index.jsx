@@ -1,10 +1,7 @@
-import './style.css'
-import NotFound from "../NotFound";
+import NotFound from "../NotFound"
 
 const Community = () => {
-  return (
-    <NotFound />
-  )
+  return <NotFound />
 }
 
-export default Community;
+export default Community

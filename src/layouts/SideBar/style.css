@@ -1,12 +1,11 @@
 .sideBar {
-  position: absolute;
-  margin-top: 90px;
-  width: 120px;
-  height: calc(100vh - 90px);
+  width: 110px;
+  height: auto;
   background-color: black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .sideBarIcons {
@@ -19,8 +18,8 @@
   gap: 20px;
 }
 .sideBarActivity {
-  height: 64px;
-  width: 64px;
+  height: 50px;
+  width: 50px;
   border-radius: 6px;
   background-color: white;
   display: flex;
@@ -31,15 +30,15 @@
 .sideBarCopyrights {
   justify-self: flex-end;
   font-size: 12px;
-  margin: 10px 0 50px 0;
+  /* margin: 10px 0 50px 0; */
   display: flex;
   align-items: center;
   color: white;
   writing-mode: vertical-lr;
-  transform: rotate(180deg);
+  transform: rotate(180deg) translateY(50px);
 }
 
 .activeIcon {
   background-color: black !important;
-  border: 2px solid #FF0101 !important;
+  border: 2px solid #ff0101 !important;
 }

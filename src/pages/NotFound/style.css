@@ -1,9 +1,10 @@
 .container {
-  min-height: calc(100vh - 274px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  height: 100%;
+  width: 100%;
 }
 
 .notFound {
@@ -21,19 +22,4 @@
 .backHome {
   text-align: center;
   text-decoration: underline;
-}
-
-@media screen and (max-width: 767px) {
-  .container {
-    min-height: calc(100vh - 254px);
-  }
-  .notFound {
-    font-size: 25vw;
-  }
-
-  .legend {
-    text-align: center;
-    font-size: 18px;
-    font-weight: unset;
-  }
 }
