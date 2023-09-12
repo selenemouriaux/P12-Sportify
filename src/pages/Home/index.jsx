@@ -26,6 +26,19 @@ const Home = () => {
 
   useEffect(() => {
     initData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    let timer
+    function handleResize() {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        window.location.reload()
+      }, 100)
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   const message = "Félicitations ! Vous avez explosé vos objectifs hier 👏"

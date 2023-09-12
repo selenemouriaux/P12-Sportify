@@ -71,3 +71,8 @@
   fill-opacity: 0.7;
   stroke-width: 0;
 }
+
+.blurred {
+  filter: blur(0.5);
+  background-color: #9b9eac;
+}

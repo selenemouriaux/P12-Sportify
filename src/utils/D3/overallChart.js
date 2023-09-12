@@ -7,8 +7,13 @@ const drawScore = (score, ref, dimensions) => {
   ])
   const svgFrame = d3.select(ref.current)
   svgFrame.empty()
-  svgFrame.attr("width", dimensions.width).attr("height", dimensions.height)
-
+  svgFrame
+    .attr("width", dimensions.width)
+    .attr("height", dimensions.height)
+    .attr(
+      "transform",
+      `translate(${dimensions.margin.left / 2}, ${dimensions.margin.top / 2})`
+    )
   const outerSize = squareSize * 0.9
   const radius = outerSize / 2
   const center = {

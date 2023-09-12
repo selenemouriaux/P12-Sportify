@@ -1,24 +1,25 @@
 import "./style.css"
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useMemo } from "react"
 import { resetGraphSize, generateDimensions } from "../../utils"
 import drawScore from "../../utils/D3/overallChart"
 
 const OverallScore = ({ score }) => {
   const scoreSizer = useRef()
   const svgScoreRef = useRef()
-  const chartMargins = {
-    top: 10,
-    right: 10,
-    bottom: 10,
-    left: 10,
-  }
+  const chartMargins = useMemo(() => {
+    return {
+      top: 10,
+      right: 10,
+      bottom: 10,
+      left: 10,
+    }
+  }, [])
 
   useEffect(() => {
     resetGraphSize(svgScoreRef)
     const dimensions = generateDimensions(scoreSizer, chartMargins)
     drawScore(score, svgScoreRef, dimensions)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [score, chartMargins])
 
   return (
     <div className="overallScore chartCard">
