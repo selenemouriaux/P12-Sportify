@@ -1,0 +1,52 @@
+.caloryType {
+  background-color: #fbfbfb;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.caloryLogoBox {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.caloryLogo {
+}
+
+.caloryInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  padding: 5px 0;
+}
+
+.caloryValue {
+  font-size: large;
+  font-weight: bold;
+}
+
+.caloryCaption {
+  font-size: small;
+  color: #74798c;
+}
+
+.red {
+  background-color: rgba(255, 127, 127, 0.2);
+}
+
+.blue {
+  background-color: rgba(118, 189, 255, 0.2);
+}
+
+.yellow {
+  background-color: rgba(255, 255, 58, 0.2);
+}
+
+.pink {
+  background-color: rgba(255, 169, 184, 0.2);
+}
