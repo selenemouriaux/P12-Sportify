@@ -64,18 +64,8 @@ const drawPerfs = (data, ref, dimensions) => {
     }
   }
 
-  // const genTicks = (levels) => {
-  //   const ticks = []
-  //   const step = parseInt(radius / levels)
-  //   for (let i = 0; i < levels; i++) {
-  //     ticks.push(step * i)
-  //   }
-  //   return ticks
-  // }
   const dataset = (data) =>
     data.map((element) => ({ name: element.kindLabel, value: element.value }))
-
-  // const ticks = genTicks(nb_lvls)
 
   points = [...points, points[0]]
   drawPath(points, graph)

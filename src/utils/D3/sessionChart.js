@@ -74,8 +74,6 @@ const drawSessionAverage = (data, ref, dimensions) => {
     .attr("id", "svgGradient")
     .attr("x1", "0%")
     .attr("x2", "100%")
-  // .attr("y1", "0%")
-  // .attr("y2", "100%");
   gradient
     .append("stop")
     .attr("class", "start")
@@ -132,11 +130,9 @@ const drawSessionAverage = (data, ref, dimensions) => {
     .style("opacity", 0)
     .on("touchmouse mousemove", function (e) {
       const mousePos = d3.pointer(e, this)
-      // const day = weekdays[parseInt(xScale.invert(mousePos[0]))]
       const day = xScale.invert((mousePos[0] * 7) / 6) + 0.001
       const bisector = d3.bisector(xAccessor).left
       const index = bisector(data, day)
-      // const date = weekdays[xAccessor(data[index-1])%7]
       const duration = yAccessor(data[index - 1])
 
       tooltipDot
